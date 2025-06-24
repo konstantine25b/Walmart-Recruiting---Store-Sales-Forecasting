@@ -451,3 +451,39 @@ TOP 10 FEATURES (Improved Model):
 
 
 ახლა იგივე ნაირად მოგვიწევს დატრეინინგება და მერე ტესტსეტყზე გაშვება, ნუ ამის მიზეზი არის ის რომ დატა ლიქიჯი გვაქ და არ გვინდა ეგ. 
+
+ Original Train: 335,453 records
+   Original Val:   41,378 records
+   Combined Train: 376,831 records
+   Test Set:       44,400 records
+
+FINAL TESTING RESULTS:
+   Training (Train+Val): MAE=$2,896.51 | RMSE=$5,242.54 | WMAE=$3,045.81
+   Testing  (Test only): MAE=$2,968.85 | RMSE=$4,959.53 | WMAE=$3,049.17
+
+TOP 10 MOST IMPORTANT FEATURES:
+    1. Dept           : 0.4108
+    2. Type_Encoded   : 0.1807
+    3. Size           : 0.1415
+    4. Store          : 0.0657
+    5. IsHoliday      : 0.0630
+    6. Month          : 0.0455
+    7. CPI            : 0.0269
+    8. Unemployment   : 0.0210
+    9. IsMonthEnd     : 0.0187
+   10. WeeksFromStart : 0.0124
+
+ნუ ბევრად გაუმჯობესდა დაჟე ვიდრე ტრეინინგში იყო ალბათ იმიტომ რომ უფრო მეტი დატა გვაქ, ქრონოლოგიურადაც უკეთესია.
+
+ასევე აქ როგორც ვუყურებ ძალიან კარგი ჯენერალიზაცია გვაქ. 
+
+Training (Train+Val): MAE=$2,896.51
+Testing  (Test only): MAE=$2,968.85
+ასევე ბევრად უკეთსეი შედეგი გვაქ ვიდრე პირველ ექსპერმიენტში.
+
+Experiment 1 Test WMAE: $4,163.80
+Final Test WMAE:        $3,049.17
+
+ჩემი აზრით კარგია ჯერ ჯერობით კაი შედეგია.
+
+ნუ აქაც პრობლემა ისაა რო გითჰუბზე არ აჩვენებს თორე ისე რო დაფულო მუშაობს და განახებს notebook-ს.
