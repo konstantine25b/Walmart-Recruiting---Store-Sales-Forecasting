@@ -100,5 +100,18 @@ CPI და Unemployment სვეტებში NaN მნიშვნელო
 
 RandomizedSearchCV გამოიყენება Random Forest-ის ოპტიმალური ჰიპერპარამეტრების მოსაძებნად. დროითი სერიების ვალიდაციისთვის გამოიყენება TimeSeriesSplit.
 
-პროსთა თემა ის არი რო, random_search.fit(X_train, y_train) ამას ანდომებს უაზროდ ბევრ დროს რა, ხოდა ჯერ ვერ მივხვდი რატომ.
+უბრალოდ ის არი რო, random_search.fit(X_train, y_train) ამას ანდომებს უაზროდ ბევრ დროს რა, ხოდა ჯერ ვერ მივხვდი რატომ.
+
+ნუ დაამთავრა და შედეგი აჩვენა ასეთი:
+
+Validation WMAE: 1805.7305 (Improved!)
+
+Validation MAE: 1615.0387 (Improved!)
+
+Local Test WMAE: 1490.7268 (Improved!)
+
+Local Test MAE: 1307.3495 (Improved!)
+
+
+
 
