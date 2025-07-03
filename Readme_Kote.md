@@ -979,3 +979,134 @@ https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.
 ეხა მოდი უკვე შექმნილი ფაიფლაინი გავტესტოთ ამიტომ შევქმნათ მე-7 ექსპერიმენტი.
 
 # experiment_7_xgboost.ipynb
+
+მოკლედ ვეჩალიჩე მაგრამ INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+და ამის გამო ვერ ჩამოვტვირთე ჩვენი არტიფაქტი ამიტომ მომიწევს მე-7 ექსპერიმენტშ უბრაოგ გადავაკოპო კოდი.
+
+
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/25?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D
+
+მოკლედ აქ აღმოვაჩინე რომ ტესტ სეტში ამატებდა type ქოლუმს სადაც nan-ები ეწერა ამიტო ეგ  დავფიქსე.
+ამის შემდეგ გავუშვი დაპრეპროცესებულ დატაზე xgboost.
+
+მოკლედ რაღაც პრობლემები აქვს ამ კლასს, ხოდა ამიტომ ნელ ნლე ვცდილობ გავასწორო
+მოკლედ ყვლეა ჯერზე ახალი ექსპერიმენტი რო არ ვაკეთო ვშლი და თავიდან ნელ ნელა ვასწორებ
+1. 📊 TRAINING METRICS:
+   WMAE: 1503.79
+   RMSE: 1493.15
+   MAE: 872.81
+   R²: 0.9796
+
+📊 VALIDATION METRICS:
+   WMAE: 16774.31 ⭐
+   RMSE: 11650.46
+   MAE: 4457.34
+   R²: 0.7182
+
+2. 📊 TRAINING METRICS:
+   WMAE: 1223.01
+   RMSE: 2129.43
+   MAE: 1128.36
+   R²: 0.9585
+
+📊 VALIDATION METRICS:
+   WMAE: 4593.32 ⭐
+   RMSE: 12112.20
+   MAE: 4505.92
+   R²: 0.6954
+
+ნელ-ნელა ვასწორებ თან კოდს და უმჯობესდება მაგრამ მაინც ოვერფიტში ვართ.
+🔝 TOP 10 MOST IMPORTANT FEATURES:
+   25. Weekly_Sales_lag_1        0.3655
+   26. Weekly_Sales_lag_2        0.2280
+   27. Weekly_Sales_lag_3        0.1263
+   29. Weekly_Sales_lag_8        0.0997
+   28. Weekly_Sales_lag_4        0.0551
+   22. Type_A                    0.0308
+   23. Type_B                    0.0262
+   18. IsChristmasWeek           0.0139
+   30. Weekly_Sales_lag_12       0.0068
+    9. Month                     0.0063
+
+მოკლედ ეს Weekly_Sales_lag ამათ აქვთ ყველაზე დიდი იმფორთანსი არ ვიცი კიდე ვცდი გაუმჯობესებას და ნუ თუ გამოვა კაია თუ არადა ამ ლაგებს დავანებებ თავს და მაგის გარეშე ვიჩალჩებ ჯობია. იმიტომ რომ მთელი დღე წაიღო მაგათზე წვალებამ.
+
+მოკლედ ვეწვალე და ეს lag ფიჩერები არის ძალიან კომპლექსური და მათი იმპლემენტაციამ ისეთი პრობლემები გამოიწვია რო ძალიან დიდი დრო წაიღო. ამიტომ მოდიმაგათ გარეშე გავაკეთოთ. ანუ არ გვინდა ეს ლაგგინგ ფიჩერები.
+
+'n_estimators': 300,    
+        'max_depth': 4,           
+        'learning_rate': 0.05,   
+        'subsample': 0.7,         
+        'colsample_bytree': 0.7,  
+        'min_child_weight': 3,    
+        'gamma': 0.1,             
+        'reg_alpha': 0.1,      
+        'reg_lambda': 1.0,     
+        'random_state': 42,
+
+📊 TRAINING METRICS:
+   WMAE: 3306.82
+   RMSE: 4794.32
+   MAE: 3256.20
+   R²: 0.7899
+
+📊 VALIDATION METRICS:
+   WMAE: 7479.42 ⭐
+   RMSE: 15933.22
+   MAE: 7427.52
+   R²: 0.4729
+
+რო მოვაშორე ლაგინგ ფიჩერები ბევრად გაუმჯობესდა შედეგი ნუ საშინელი შედეგია მაგრამ იმას ჯობია.
+
+Training XGBoost model...
+   📋 Parameters: {'n_estimators': 100, 'max_depth': 3, 'learning_rate': 0.03, 'subsample': 0.6, 'colsample_bytree': 0.6, 'min_child_weight': 5, 'gamma': 0.2, 'reg_alpha': 0.2, 'reg_lambda': 2.0, 
+
+📊 TRAINING METRICS:
+   WMAE: 7470.71
+   RMSE: 9719.44
+   MAE: 7428.61
+   R²: 0.1365
+
+📊 VALIDATION METRICS:
+   WMAE: 13045.05 ⭐
+   RMSE: 22284.83
+   MAE: 12972.71
+   R²: -0.0310
+
+   გავაუარესე:(
+
+Parameters: {'n_estimators': 200, 'max_depth': 8, 'learning_rate': 0.05, 'subsample': 0.8, 'colsample_bytree': 0.8, 'colsample_bylevel': 0.8, 'min_child_weight': 3, 'gamma': 0.1, 'reg_alpha': 0.1, 'reg_lambda': 1.0,
+
+📊 TRAINING METRICS:
+   WMAE: 1824.73
+   RMSE: 2826.92
+   MAE: 1799.88
+   R²: 0.9269
+
+📊 VALIDATION METRICS:
+   WMAE: 5898.46 ⭐
+   RMSE: 14480.74
+   MAE: 5845.00
+   R²: 0.5647
+
+ესე უკეთესია მარა კვლავ ოვერფიტში ვარ.
+
+კაი მოკლედ მეორე ექსპერიმენტს ვუყურებ და მანდ უკეთესი შედეგი გვაქ ბევრად ხოდა მანდ ასევე სხვა ფიჩერები მაქ ამიტომ მაქ ასეთი იდეა რო მანდ რა ფიჩერებიც მაქ განსხვავებულები ეგენი ჩავამატო და ისე გავტესტო.
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/33
+
+📊 TRAINING METRICS:
+   WMAE: 1822.30
+   RMSE: 2806.07
+   MAE: 1790.54
+   R²: 0.9280
+
+📊 VALIDATION METRICS:
+   WMAE: 5971.66 ⭐
+   RMSE: 14599.85
+   MAE: 5918.78
+   R²: 0.5575
+
+
+['Store', 'Dept', 'Size', 'Temperature', 'Fuel_Price', 'CPI', 'Unemployment', 'IsHoliday', 'Month', 'DayOfWeek', 'IsWeekend', 'IsMonthStart', 'IsMonthEnd', 'WeeksFromStart', 'IsSuperBowlWeek', 'IsLaborDayWeek', 'IsThanksgivingWeek', 'IsChristmasWeek', 'IsMajorHoliday', 'IsHolidayMonth', 'IsBackToSchool', 'Type_Encoded', 'Type_A', 'Type_B', 'Type_C']
+
+აი ეს ფიჩერები გამომივიდა საბოლოო ჯამში.
+ნუ ამ ექსპერიმენტისთვის საკმარისია.
