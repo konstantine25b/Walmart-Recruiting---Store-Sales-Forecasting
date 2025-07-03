@@ -813,3 +813,50 @@ MAE: $245.95
 
 
 # experiment_5_future_engineering.ipynb
+
+ამ ექსპერიმენტში, რადგან უკვე გავტესტე სხვადასხვა მიდგომები და ვნახე როგორია დატა. მოკლედ ვიზავ პრეპროცესინგის მთლიან ფაიფლაინს.
+დატას გავყოფ ორად ტრეინად და ვალიდაციად, 80-20 ზე რადგან ტესტსეტზეც ეგრე ტრაინთან შედარებით 4 ჯერ პატარაა.
+### ამის მერე უკვე ვაპირებ ასეთ პრეპროცესინგს. ნუ როგორც experiemt 2 ში ვქენი ეგრე ვიზავ მხოლოდ ტრეინსეტზე + დავამატებ მეოთხეში როგორც ვქენი მაგეებს ანუ დავმერჯავ მაგრამ markdown- ებს არ გამოვიყენებ.
+ასევე გავწმინდავ დატას.
+
+
+როგორც ვთქვი ჯერ დავალოადე დატა, შემდეგ ამოვიღე 'MarkDown1', 'MarkDown2', 'MarkDown3', 'MarkDown4', 'MarkDown5',
+შემდეგ დავმერჯე Final merged dataset: (421570, 11)
+
+შემდეგ გავყავი დატა. ოღონდ პარასკევი ავიღე დაყოფის წერტილად და ისე.
+📅 Split date: 2012-04-13 00:00:00
+🚂 Training: 335,761 records (79.6%)
+🔮 Validation: 85,809 records (20.4%)
+📊 Training date range: 2010-02-05 00:00:00 to 2012-04-06 00:00:00
+📊 Validation date range: 2012-04-13 00:00:00 to 2012-10-26 00:00:00
+
+შემდეგ უკვე ვზრუნავთ აუთლაიერებზე ოღონდ მხოლოდ ტრეინ სეტიდან თავისთავად.
+
+მარა მგონი ჯობდა პირდაპირ დიდ ფაიფლაინში მქონოდა ეს ამიტომ ახლიდან ვიზავ ამას დიდ ფაიფლაინში- WalmartFeatureEngineer.
+
+ასევე როგორც ვთქვი გვექნება: date_features, lag_features, rolling_features, store_dept_features.
+ნუ ცალკე მაქ კიდე WalmartFeaturePipeline სადაც ვახდენ აუთლაიერების მოშორებასაც და შენდეგ FeatureEngineer.
+
+მაქ ასევე calculate_wmae და evaluate_model_performance ფუნქციები.
+
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/4?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D
+- ეს ნელ-ნელა
+
+და როცა მთლიან ფაიფლაინზე გადავედი ეს: 
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/14?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D
+
+მოკლედ, კვლავ აღმოჩნდა ოვერფიტიც და მოკლედ უნდა შევცვალო მიდგონა.
+🚂 TRAINING PERFORMANCE:
+   WMAE: $72.59
+   MAE:  $72.65
+   R²:   1.0000
+
+🔮 VALIDATION PERFORMANCE:
+   WMAE: $134.98
+   MAE:  $132.71
+   R²:   0.9992
+
+
+ვიფიქრე რომ ეგრევე გავაერთიაბნებ თქომეორე ექსპერიმენტს და მეოთხეს თქო მაგრამ ძალიან დიდი დრო დავხარჯე ტყუილად ავაგე რაღაც უზარმაზარი ფაიფლაინი რომელიც საბოლოოდ ისე მოხდა რომ სწორად ვერ მუშაობს. ამიტომ ვცვლი მიდგომას და step-bystep ვიზავ.
+
+ნუ ექსპერიმენტი ყოველი შემთხვევისთვის მაინც დავასეივე.
