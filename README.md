@@ -206,3 +206,103 @@ Local Test WMAE: 1490.7268 (Improved!)
 Local Test MAE: 1307.3495 (Improved!)
 
 ნუ აქაც ზედმეტად კარგი შედეგია და ეჭვებს აჩენს.
+
+
+# experiment_5_future_engineering.ipynb
+
+მოკლედ ამ ექსპერიმენტში იქიდან გამომდინარე რომ რადგან უკვე გავტესტე სხვადასხვა მიდგომები და ვნახე როგორია დატა. მოკლედ ვიზავ პრეპროცესინგის მთლიან ფაიფლაინს.
+დატას გავყოფ ორად ტრეინად და ვალიდაციად, 80-20 ზე რადგან ტესტსეტზეც ეგრე ტრაინთან შედარებით 4 ჯერ პატარაა.
+### ამის მერე უკვე ვაპირებ ასეთ პრეპროცესინგს. ნუ როგორც experiemt 2 ში ვქენი ეგრე ვიზავ მხოლოდ ტრეინსეტზე + დავამატებ მეოთხეში როგორც ვქენი მაგეებს ანუ დავმერჯავ მაგრამ markdown- ებს არ გამოვიყენებ.
+ასევე გავწმინდავ დატას.
+
+ასევე როგორც ვთქვი გვექნება: date_features, lag_features, rolling_features, store_dept_features.
+ნუ ცალკე მაქ კიდე WalmartFeaturePipeline სადაც ვახდენ აუთლაიერების მოშორებასაც და შენდეგ FeatureEngineer.
+მოკლედ, კვლავ აღმოჩნდა ოვერფიტიც და მოკლედ უნდა შევცვალო მიდგონა.
+🚂 TRAINING PERFORMANCE:
+   WMAE: $72.59
+   MAE:  $72.65
+   R²:   1.0000
+
+🔮 VALIDATION PERFORMANCE:
+   WMAE: $134.98
+   MAE:  $132.71
+   R²:   0.9992
+
+
+ვიფიქრე რომ ეგრევე გავაერთიაბნებ თქომეორე ექსპერიმენტს და მეოთხეს თქო მაგრამ ძალიან დიდი დრო დავხარჯე ტყუილად ავაგე რაღაც უზარმაზარი ფაიფლაინი რომელიც საბოლოოდ ისე მოხდა რომ სწორად ვერ მუშაობს. ამიტომ ვცვლი მიდგომას და step-bystep ვიზავ.
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/14?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D
+
+
+# experiment_6_future_engineering.ipynb
+
+აქ ვაპირებ რომ მეორე ექსპერიმენტი და მეოთხეში ნასწავლი რაღაცეები შევაერთო და მივიხო პრეპროცესინგის კარგი ვარიანტი.
+Final columns: ['Store', 'Dept', 'Date', 'Weekly_Sales', 'Type', 'Size', 'Temperature', 'Fuel_Price', 'CPI', 'Unemployment', 'IsHoliday', 'Month', 'DayOfWeek', 'IsWeekend', 'IsMonthStart', 'IsMonthEnd', 'WeeksFromStart']
+- ესენია ჩვენი მეორე ექსპერიმენტის საბოლოო ქოლუმები.
+train_data, val_data, split_info = experiment_2_pipeline()
+
+type-სთვის one hot encoderi გამომრჩა და ჩავამატე. ანუ გვაქ 19 col.
+აი აქ არი ექსპერიმენტი.
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/15?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D
+
+'IsSuperBowlWeek', 'IsLaborDayWeek', 'IsMajorHoliday', 'Weekly_Sales_lag_2', 'Weekly_Sales_lag_8', 'Weekly_Sales_lag_4', 'IsChristmasWeek', 'IsBackToSchool', 'Weekly_Sales_lag_3', 'IsHolidayMonth', 'IsThanksgivingWeek', 'Weekly_Sales_lag_1', 'Weekly_Sales_lag_12'
+
+გავასწორე lag ფიჩერებისთვის მხოლოდ training data-ს ვიყენებ. ამითი მასკინგს ვაკეთებ და ისე ვაკეთებ.
+['IsSuperBowlWeek',
+  'Temperature',
+  'IsLaborDayWeek',
+  'WeeksFromStart',
+  'Dept',
+  'IsMajorHoliday',
+  'Weekly_Sales_lag_2',
+  'Weekly_Sales_lag_8',
+  'Type_B',
+  'Weekly_Sales_lag_4',
+  'IsChristmasWeek',
+  'Type_A',
+  'IsMonthEnd',
+  'IsWeekend',
+  'Type_C',
+  'IsBackToSchool',
+  'Month',
+  'Weekly_Sales_lag_3',
+  'Store',
+  'IsHolidayMonth',
+  'IsThanksgivingWeek',
+  'Unemployment',
+  'IsHoliday',
+  'Fuel_Price',
+  'CPI',
+  'Size',
+  'Weekly_Sales_lag_1',
+  'DayOfWeek',
+  'Weekly_Sales_lag_12',
+  'IsMonthStart']
+
+
+# experiment_7_xgboost.ipynb
+
+მოკლედ ვეჩალიჩე მაგრამ INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+და ამის გამო ვერ ჩამოვტვირთე ჩვენი არტიფაქტი ამიტომ მომიწევს მე-7 ექსპერიმენტშ უბრაოგ გადავაკოპო კოდი.
+
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/25?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D
+
+მოკლედ ეს Weekly_Sales_lag ამათ აქვთ ყველაზე დიდი იმფორთანსი არ ვიცი კიდე ვცდი გაუმჯობესებას და ნუ თუ გამოვა კაია თუ არადა ამ ლაგებს დავანებებ თავს და მაგის გარეშე ვიჩალჩებ ჯობია. იმიტომ რომ მთელი დღე წაიღო მაგათზე წვალებამ.
+
+კაი მოკლედ მეორე ექსპერიმენტს ვუყურებ და მანდ უკეთესი შედეგი გვაქ ბევრად ხოდა მანდ ასევე სხვა ფიჩერები მაქ ამიტომ მაქ ასეთი იდეა რო მანდ რა ფიჩერებიც მაქ განსხვავებულები ეგენი ჩავამატო და ისე გავტესტო.
+
+📊 TRAINING METRICS:
+   WMAE: 1822.30
+   RMSE: 2806.07
+   MAE: 1790.54
+   R²: 0.9280
+
+📊 VALIDATION METRICS:
+   WMAE: 5971.66 ⭐
+   RMSE: 14599.85
+   MAE: 5918.78
+   R²: 0.5575
+
+აი ეს ფიჩერები გამომივიდა საბოლოო ჯამში.
+
+['Store', 'Dept', 'Size', 'Temperature', 'Fuel_Price', 'CPI', 'Unemployment', 'IsHoliday', 'Month', 'DayOfWeek', 'IsWeekend', 'IsMonthStart', 'IsMonthEnd', 'WeeksFromStart', 'IsSuperBowlWeek', 'IsLaborDayWeek', 'IsThanksgivingWeek', 'IsChristmasWeek', 'IsMajorHoliday', 'IsHolidayMonth', 'IsBackToSchool', 'Type_Encoded', 'Type_A', 'Type_B', 'Type_C']
+
