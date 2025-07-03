@@ -862,4 +862,120 @@ https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.
 ნუ ექსპერიმენტი ყოველი შემთხვევისთვის მაინც დავასეივე.
 
 # experiment_6_future_engineering.ipynb
+
 აქ ვაპირებ რომ მეორე ექსპერიმენტი და მეოთხეში ნასწავლი რაღაცეები შევაერთო და მივიხო პრეპროცესინგის კარგი ვარიანტი.
+
+მოდი ჯერ პირდაპირ გავაკეთოთ ფუნქცია რომელიც დატას დაამუშავებს ზუსტად ისე როგორც მეორე ექსპერიმენტში. ჯერ გაყოფს 80-20ზე და შემდეგ დაამუშავებს.
+
+Final columns: ['Store', 'Dept', 'Date', 'Weekly_Sales', 'Type', 'Size', 'Temperature', 'Fuel_Price', 'CPI', 'Unemployment', 'IsHoliday', 'Month', 'DayOfWeek', 'IsWeekend', 'IsMonthStart', 'IsMonthEnd', 'WeeksFromStart']
+- ესენია ჩვენი მეორე ექსპერიმენტის საბოლოო ქოლუმები.
+train_data, val_data, split_info = experiment_2_pipeline()
+
+ახლანდელ დატას გავუკეთე ანალიზი და გვაქ ასეთი:
+გამოგვივივიდა 16 Features.
+
+📊 STARTING DATA ANALYSIS
+==================================================
+📋 BASIC DATASET INFORMATION
+Training shape: (335453, 17)
+Validation shape: (85809, 17)
+Split date: 2012-04-13 00:00:00
+
+🎯 TARGET VARIABLE ANALYSIS (Weekly_Sales)
+   Mean: $15,873.74
+   Median: $7,636.72
+   Std: $22,262.57
+   Range: $-4,988.94 to $693,099.36
+   Skewness: 3.178
+   Kurtosis: 22.166
+
+🏪 STORE ANALYSIS
+Store Type Statistics:
+     Weekly_Sales                         Size             Store    Dept
+             mean       std   count       mean       std nunique nunique
+Type                                                                    
+A        19950.28  25866.49  171570  182250.42  41479.05      22      81
+B        12153.91  16852.17  130169  101822.50  30924.44      17      80
+C         9490.49  15851.93   33714   40543.11   1198.38       6      66
+
+📅 TEMPORAL ANALYSIS
+Temporal Patterns:
+   Best month: 12
+   Worst month: 1
+   Weekend boost: N/A (insufficient data)
+
+🔗 FEATURE CORRELATION ANALYSIS
+Strongest correlations with Weekly_Sales:
+   Size: 0.246
+   Month: 0.030
+   Unemployment: 0.024
+   CPI: 0.021
+   IsMonthEnd: 0.011
+   IsMonthStart: 0.006
+   Fuel_Price: 0.004
+
+❓ MISSING VALUES ANALYSIS
+Missing values summary:
+Empty DataFrame
+Columns: [Training, Validation, Train_%, Val_%]
+Index: []
+
+✅ DATA QUALITY SUMMARY
+   📊 Training samples: 335,453
+   📊 Validation samples: 85,809
+   🔗 Features: 16 (excluding target)
+   ❓ Missing values: 0 in training, 0 in validation
+   🎯 Target range: $-4,988.94 to $693,099.36
+   🏪 Store types: 3 (A, B, C)
+   📅 Time span: 791 days
+
+📊 DATA ANALYSIS COMPLETED!
+🔗 All plots and metrics logged to MLflow
+==================================================
+
+type-სთვის one hot encoderi გამომრჩა და ჩავამატე. ანუ გვაქ 19 col.
+
+აი აქ არი ექსპერიმენტი.
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/15?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D
+
+ახლა კიდევ როგორც მეოთხე ექსპერიმენტში დავამატებ ლაგინგ და ჰოლიდეი ფიჩერებს. არ ვამატებ როლინგ და ewm იმიტომ რომ ეგენი რაღაც ცუდად მოქმედებენ და მირჩევნია სანამ უკეთესად გავერკვევი ესენი მქონდეს მხოლოდ.
+
+'IsSuperBowlWeek', 'IsLaborDayWeek', 'IsMajorHoliday', 'Weekly_Sales_lag_2', 'Weekly_Sales_lag_8', 'Weekly_Sales_lag_4', 'IsChristmasWeek', 'IsBackToSchool', 'Weekly_Sales_lag_3', 'IsHolidayMonth', 'IsThanksgivingWeek', 'Weekly_Sales_lag_1', 'Weekly_Sales_lag_12'
+
+კაი კი ახლა ავაწყოთ საბოლოო ფაიფლაინი პრეპროცესინგის.
+ვააა ლაგინგ feature-ებს მაინც ისე weekly_sale-ების გამოყენებთ აწყობდა. ამიტომ ეგ იყო მთავარი მინუსი.
+გავასწორე lag ფიჩერებისთვის მხოლოდ training data-ს ვიყენებ. ამითი მასკინგს ვაკეთებ და ისე ვაკეთებ.
+['IsSuperBowlWeek',
+  'Temperature',
+  'IsLaborDayWeek',
+  'WeeksFromStart',
+  'Dept',
+  'IsMajorHoliday',
+  'Weekly_Sales_lag_2',
+  'Weekly_Sales_lag_8',
+  'Type_B',
+  'Weekly_Sales_lag_4',
+  'IsChristmasWeek',
+  'Type_A',
+  'IsMonthEnd',
+  'IsWeekend',
+  'Type_C',
+  'IsBackToSchool',
+  'Month',
+  'Weekly_Sales_lag_3',
+  'Store',
+  'IsHolidayMonth',
+  'IsThanksgivingWeek',
+  'Unemployment',
+  'IsHoliday',
+  'Fuel_Price',
+  'CPI',
+  'Size',
+  'Weekly_Sales_lag_1',
+  'DayOfWeek',
+  'Weekly_Sales_lag_12',
+  'IsMonthStart']
+
+ეხა მოდი უკვე შექმნილი ფაიფლაინი გავტესტოთ ამიტომ შევქმნათ მე-7 ექსპერიმენტი.
+
+# experiment_7_xgboost.ipynb
