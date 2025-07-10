@@ -1134,3 +1134,26 @@ LightGBM WMAE: 2,418.70
 
 # experiment_9_prophet
 
+მოკლედ ეხა უკვე დავიწყებ გატესტვას სხვადასხვა მოდელებით.
+
+საბოლოოდ ავიღებ ისევ მე-7 ექსპერიმენტში მიღებულფიჩერებს და დატას დავამუშავებ ეგრე 
+
+['Store', 'Dept', 'Size', 'Temperature', 'Fuel_Price', 'CPI', 'Unemployment', 'IsHoliday', 'Month', 'DayOfWeek', 'IsWeekend', 'IsMonthStart', 'IsMonthEnd', 'WeeksFromStart', 'IsSuperBowlWeek', 'IsLaborDayWeek', 'IsThanksgivingWeek', 'IsChristmasWeek', 'IsMajorHoliday', 'IsHolidayMonth', 'IsBackToSchool', 'Type_Encoded', 'Type_A', 'Type_B', 'Type_C']
+
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/35?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D
+
+ამ ექსპერიმენტშ ვოყენებ prophet-ს. ვნახოთ რა იქნება შედეგი:
+
+დიდი დრო კი მიაქვს ტრეინინგს 25 წუთი 
+
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/36
+
+კაია ეს კაი მოდელი გამოვიდა:
+
+📊 Validation Metrics:
+   WMAE (Competition Metric): $1,871.08
+   MAE: $1,819.20
+   RMSE: $3,786.26
+   R²: 0.9702
+
+
