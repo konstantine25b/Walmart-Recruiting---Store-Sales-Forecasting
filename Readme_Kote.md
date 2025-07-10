@@ -1134,3 +1134,70 @@ LightGBM WMAE: 2,418.70
 
 # experiment_9_prophet
 
+მოკლედ ეხა უკვე დავიწყებ გატესტვას სხვადასხვა მოდელებით.
+
+საბოლოოდ ავიღებ ისევ მე-7 ექსპერიმენტში მიღებულფიჩერებს და დატას დავამუშავებ ეგრე 
+
+['Store', 'Dept', 'Size', 'Temperature', 'Fuel_Price', 'CPI', 'Unemployment', 'IsHoliday', 'Month', 'DayOfWeek', 'IsWeekend', 'IsMonthStart', 'IsMonthEnd', 'WeeksFromStart', 'IsSuperBowlWeek', 'IsLaborDayWeek', 'IsThanksgivingWeek', 'IsChristmasWeek', 'IsMajorHoliday', 'IsHolidayMonth', 'IsBackToSchool', 'Type_Encoded', 'Type_A', 'Type_B', 'Type_C']
+
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/35?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D
+
+ამ ექსპერიმენტშ ვოყენებ prophet-ს. ვნახოთ რა იქნება შედეგი:
+
+დიდი დრო კი მიაქვს ტრეინინგს 25 წუთი 
+
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/36
+
+კაია ეს კაი მოდელი გამოვიდა:
+
+🎯 Successful models: 3167
+   ❌ Failed models: 146
+
+📊 Validation Metrics:
+   WMAE (Competition Metric): $1,871.08
+   MAE: $1,819.20
+   RMSE: $3,786.26
+   R²: 0.9702
+
+
+# experiment_10_ARIMA
+
+ეხა უკვე იგივე ნაირი ფიჩერ ინჯინეერინგით გავტესტოთ არიმას მოდელი.
+
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/37?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D
+
+ამას 19 წუთი დაჭირდა მარა გავიდა ბოლოში როგორც იქნა
+
+📊 Validation Metrics:
+   WMAE (Competition Metric): $2,589.86
+   MAE: $2,546.16
+   RMSE: $5,267.98
+   R²: 0.9424
+
+ესენიც მშვენივრად გამოიყურება კარგი ფრედიქშენებია
+
+
+# Experiment_11_sarimax.ipynb
+
+კაი ახლა გავაკეთოთ სარიმაქსით რომელიც არიმას უმატებს სეზონურობას და წესით უკეთესი უნდა იყოს ვიდრე არიმას მოდელი.
+
+ხო აქ sarimax გვაქ და არა sarima , ანუ დაგვემატა eXogenous variables (marketing spend, holidays, weather) ანუ უფრო კარგია როცა 
+ჰოლიდეი ან აი ისეთი დატასეტი გვაქ სადაც დღე როგორია მაგას აქვს მნიშვნელობა. 
+
+📊 Training shape: (292063, 25)
+   📊 Validation shape: (84314, 25)
+   🎯 Features: 25
+
+პრეპროცესინგის შემდეგ დატა ასე გამოიუყურება ხოლმე.
+
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/43?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D
+
+რამდენიმე ვარიანტი გავტესტე მაგრამ ძალიან დიდი დრო მიქონდა ამიტო გავამარტივე და საბოლოოდ ეს შედეგია:
+📊 Validation Metrics:
+   WMAE (Competition Metric): $3,227.31
+   MAE: $3,178.40
+   RMSE: $7,723.57
+   R²: 0.8762
+
+ნუ არიმაზე უარესია იმიტომ რომ ბევრად მალე დატრეინინგდა იმიტომ რომ შედარებით რთული დროში ძალიან იწელებოდა.
+
