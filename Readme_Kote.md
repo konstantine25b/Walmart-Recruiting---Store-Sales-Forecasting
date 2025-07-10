@@ -1157,3 +1157,5 @@ https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.
    R²: 0.9702
 
 
+# experiment_10_ARIMA
+
