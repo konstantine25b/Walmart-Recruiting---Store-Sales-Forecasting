@@ -1177,3 +1177,4 @@ https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.
 ესენიც მშვენივრად გამოიყურება კარგი ფრედიქშენებია
 
 
+# Experiment_11_sarimax.ipynb
