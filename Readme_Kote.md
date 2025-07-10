@@ -1150,6 +1150,9 @@ https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.
 
 კაია ეს კაი მოდელი გამოვიდა:
 
+🎯 Successful models: 3167
+   ❌ Failed models: 146
+
 📊 Validation Metrics:
    WMAE (Competition Metric): $1,871.08
    MAE: $1,819.20
@@ -1158,4 +1161,19 @@ https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.
 
 
 # experiment_10_ARIMA
+
+ეხა უკვე იგივე ნაირი ფიჩერ ინჯინეერინგით გავტესტოთ არიმას მოდელი.
+
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/37?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D
+
+ამას 19 წუთი დაჭირდა მარა გავიდა ბოლოში როგორც იქნა
+
+📊 Validation Metrics:
+   WMAE (Competition Metric): $2,589.86
+   MAE: $2,546.16
+   RMSE: $5,267.98
+   R²: 0.9424
+
+ესენიც მშვენივრად გამოიყურება კარგი ფრედიქშენებია
+
 
