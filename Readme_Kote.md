@@ -1330,3 +1330,15 @@ Temporal Fusion Transformer  - google მა გააკეტა 2020-ში�
 ფიჩერების იმფორთანსის გაგება შეუძლიაო კარგად. ამათი ჯამია LSTM + Attention + Feature Select. 
 
 შესაბამისად შესაძლებელია საკმაოდ კარგი იყოს მაგრამ ჩემი აზრით timesfm-ს ვერ აჯობებს. 
+
+📈 Training Results:
+   🎯 Train WMAE: $1,483.92
+   📊 Train MAE: $1,433.58
+   📊 Train R²: 0.9235
+
+📉 Validation Results:
+   🎯 Val WMAE: $1,536.30
+   📊 Val MAE: $1,487.36
+   📊 Val R²: 0.9000
+
+ხოო აქ ოვერფიტში ნამდვილა არ არის და საკმაოდ მომეწონა ეს შედეგი.
