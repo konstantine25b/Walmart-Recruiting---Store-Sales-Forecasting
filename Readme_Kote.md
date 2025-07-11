@@ -1302,4 +1302,23 @@ https://wandb.ai/konstantine25b-free-university-of-tbilisi-/walmart-nbeats-forec
 
 კაი ეხა გავტესტოთ სხვა მოდელი PatchTST
 
+Divides the time series into non-overlapping patches (e.g., chunks of 16 or 32 timesteps)
 
+Flattens + projects those patches into embeddings
+
+Feeds these embeddings into a standard Transformer encoder
+
+ნუ ეს ტრანსფორმერ მოდელია რაც საკმაოდ საინტერესოა გასატესტად.
+წერია რომ შედარებით რთული გასატესტიაო.
+
+📈 Training Results:
+   🎯 Train WMAE: $139.22
+   📊 Train MAE: $145.96
+   📊 Train R²: 0.9992
+
+📉 Validation Results:
+   🎯 Val WMAE: $1,468.55
+   📊 Val MAE: $1,460.37
+   📊 Val R²: 0.9060
+
+აქ ძალიან ოვერფიტში ვართ შესაბამისად არ გამოდგა ეს მოდელი ჩვენი დატასეტისთვის კარგი.
