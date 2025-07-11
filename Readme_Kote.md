@@ -1258,3 +1258,21 @@ https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.
 ნუ წერია რო ვენიშინგ გრადიენტებს ერიდება და ასევე მარტივიაო დატრეინინგებაო.
 
 ვნახოთ აბა რა შედეგს დადებს.
+
+🚀 Training N-BEATS model...
+   Epoch   0: Train Loss = 0.822043, Val Loss = 0.714339
+   Epoch  20: Train Loss = 0.047840, Val Loss = 0.678586
+   Epoch  40: Train Loss = 0.058264, Val Loss = 0.681264
+   Epoch  60: Train Loss = 0.007083, Val Loss = 0.662860
+   Epoch  80: Train Loss = 0.000364, Val Loss = 0.655802
+
+✅ Evaluation complete!
+   🎯 WMAE: $1,399.42
+   📊 MAE: $1,369.29
+   📊 RMSE: $2,581.87
+   📊 R²: 0.9240
+
+ეს კიდე იყო შედეგი, ნუ კაი შედეგია ჩემი აზრით.
+
+https://wandb.ai/konstantine25b-free-university-of-tbilisi-/walmart-nbeats-forecasting/runs/wdkyvyvq
+
