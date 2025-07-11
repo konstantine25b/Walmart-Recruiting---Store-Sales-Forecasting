@@ -1251,3 +1251,10 @@ https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.
    RMSE: $4,173.24
    R²: 0.7989
 
+
+# Experiment 13 N-Beats
+
+კაი გადავედით deep learning-ის სხვადასხვა ალგორითმის გატესტვაზე. 
+ნუ წერია რო ვენიშინგ გრადიენტებს ერიდება და ასევე მარტივიაო დატრეინინგებაო.
+
+ვნახოთ აბა რა შედეგს დადებს.
