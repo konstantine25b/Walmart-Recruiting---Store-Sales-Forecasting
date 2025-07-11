@@ -1110,3 +1110,6 @@ https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.
 
 აი ეს ფიჩერები გამომივიდა საბოლოო ჯამში.
 ნუ ამ ექსპერიმენტისთვის საკმარისია.
+
+# Experiment 13 N-Beats
+
