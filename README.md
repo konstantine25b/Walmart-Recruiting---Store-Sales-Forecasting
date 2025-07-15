@@ -767,3 +767,18 @@ SARIMA(1,1,1)x(0,1,0,52)
 
 https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/58
 
+# Experiment Sarimax
+
+Sarimax= sarima + external regressors 
+
+შესაბამისად აქ შეგვიძლია სხვა ფიჩერების გამოყენებაც რაც მიღებული გვაქვს.
+
+იგივე ნაირად ვატრეინინგებ რაც sarima, მაგრამ მანდ რო გვაქ სხვადასხვა ადრე გამოყვანილი ფიჩერების მაგეებსაც ვატან ინფუთად. შესაბამისად უფრო კომპლექსური მოდელი გამოდის.
+
+📊 Validation Metrics:
+   WMAE (Competition Metric): $3,591.14
+   MAE: $3,467.08
+   RMSE: $6,590.84
+   R²: 0.7935
+
+ნუ ესენია სტატისტიკური მოდელები.
