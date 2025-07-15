@@ -1403,3 +1403,16 @@ s: length of the seasonal cycle (e.g., 12 for monthly, 7 for weekly)
 ანალოგიურად როგორც arima ესეც მხოლოდ date columns-ს მიიღებს და მხოლოდ მასზე ტრეინინგდება ანუ არ ჭირდება სხვა ქოლუმნები.
 
 იგივენაირი ტრეინინგით როგორც arima შეგვიძლია გავუშვათ ეს მოდელიც.
+SARIMA(1,1,1)x(0,1,0,52)
+
+📊 Training Metrics:
+   Training WMAE: $1,586.54
+
+📊 Validation Metrics:
+   WMAE (Competition Metric): $2,219.86
+   MAE: $2,173.68
+   RMSE: $5,867.32
+   R²: 0.6853
+
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/58
+
