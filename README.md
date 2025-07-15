@@ -704,3 +704,53 @@ https://wandb.ai/konstantine25b-free-university-of-tbilisi-/walmart-tft-forecast
 ხოო აქ ოვერფიტში ნამდვილა არ არის და საკმაოდ მომეწონა ეს შედეგი.
 
 
+# arima მოდელი
+
+მოკლედ აღმოვაჩინეთ რომ future enginering კაი გვქონდა. მაგრამ აღმოვაჩინეთ რომ თითოეულ მოდელს სხვადასხვანაირი
+ტრენინგი და დატასეტის დამუშავება უნდა.
+
+ამიტომ ჩავუჯექი ეხა სათითაოდ მოდელებს ჯერ ვიწყებ arima-თი.
+ვუყურე arima-ზე ვიდეოს და ნუ ყველაზე მარტივი time series ალგორითმია ალბათ.
+
+AutoRegressive Integrated Moving Average
+AR (AutoRegressive) – "memory of the past" today’s value depends on yesterday’s value.
+I (Integrated) – "trend remover" If your data has a trend, we subtract the previous value to get the difference.
+MA (Moving Average) – "shock smoother" Captures shocks/noise that impact future values.
+
+კაი ნუ ეხა სეზონურობას არ გამოვიყენებ, და თავიდან ბოლომდე სტატისტიკური მოდელი იქნება იმიტომ რომ არიმაა. 
+მხოლოდ date აქვს ინფუთად ამიტომ feature engineering-ს დიდი აზრი არც აქვს.
+
+თითოეული store_dept კომბოზე ცალ ცალკე მოდელი გვაქ.
+Total possible combinations: 3,248 (45 stores × ~72 departments average)
+აი ეს არის შედეგი:
+
+https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/52
+
+📊 Training Metrics:
+   Training WMAE: $1,556.27
+
+📊 Validation Metrics:
+   WMAE (Competition Metric): $2,011.67
+   MAE: $1,976.46
+   RMSE: $4,574.46
+   R²: 0.8273
+
+# Sarima იგივე arima + სეზონურობა.
+
+Sarima ჯობია arima-ს იმით რომ აქვს სეზონურობაც რაც გუსლისმობს რომ სეზონური პატერნების
+ამოცნობა შეუძლია.
+Sarima იღებს 7 პარამეტრს:
+(p, d, q) – non-seasonal ARIMA terms:
+p: autoregression (AR)
+d: differencing (trend removal)
+q: moving average (MA)
+
+(P, D, Q, s) – seasonal parts:
+P: seasonal autoregression
+D: seasonal differencing
+Q: seasonal moving average
+s: length of the seasonal cycle (e.g., 12 for monthly, 7 for weekly)
+
+ანალოგიურად როგორც arima ესეც მხოლოდ date columns-ს მიიღებს და მხოლოდ მასზე ტრეინინგდება ანუ არ ჭირდება სხვა ქოლუმნები.
+
+იგივენაირი ტრეინინგით როგორც arima შეგვიძლია გავუშვათ ეს მოდელიც.
