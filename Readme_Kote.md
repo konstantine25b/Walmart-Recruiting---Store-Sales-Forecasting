@@ -1432,3 +1432,5 @@ Sarimax= sarima + external regressors
    R²: 0.7935
 
 ნუ ესენია სტატისტიკური მოდელები.
+
+# Experiment N-Beats
