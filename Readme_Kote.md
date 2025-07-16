@@ -1434,3 +1434,40 @@ Sarimax= sarima + external regressors
 ნუ ესენია სტატისტიკური მოდელები.
 
 # Experiment N-Beats
+იგივე Neural Basis Expansion Analysis for Time Series
+
+კაი როგორც გავარკვიე ორნაირი მოდელი არსებობს.
+default-ად შეუძლია მხოლოდ date column-ის მიღება
+ხოლო მეორეს აქვს ექსთენშენი სადაც Multivariate or Exogenous Input-ებიც შეიძლება ანუ ბევრი ქოლუმის ერთად გადაცემა.
+
+ჯერ გავტესტოთ პირველი ანუ მხოლოდ date რომ აქვს.
+
+ჰიპერპაამეტრებს ორივეგან იგვეს გამოვიყენებ:
+config = {
+        'h': 53,               
+        'input_size': 52, 
+        'max_steps': 5000,     
+        'val_size': 53,       
+        'batch_size': 256,   
+        'learning_rate': 1e-3, 
+        'random_seed': 42,
+        'optimizer': 'AdamW',
+        'shared_weights': True
+    }
+
+[ Input Block ] → [ Block 1 ] → [ Block 2 ] → ... → [ Final Forecast ]
+ასევე როგორც ვნახე აქ გვაქ რესიდუალ ქონექშენებიც.
+
+WMAE: 3767.47, MAE: 3388.35, RMSE: 8433.92, R²: 0.8702
+
+აი ეს არის ვალიდაციის შედეგი.
+
+# Experiment NBEATSx ახლა კიდე გავტესტოთ ვერსია სადაც nbeats-ში შეგიძლია ფიჩერების გატანებაც. Extended N-BEATS
+ანუ ვიყენებ ეხა NBEATSx
+
+ანუ ეხა გადავეცი ის ფიჩერებიც რაც მანმდე დამუშავებული მაქვს. ესენი ანუ.
+['IsHoliday', 'Temperature', 'Fuel_Price', 'CPI', 'Unemployment', 'Size', 'Month', 'DayOfWeek', 'WeekOfYear', 'IsWeekend', 'IsMonthStart', 'IsMonthEnd', 'IsSuperBowlWeek', 'IsLaborDayWeek', 'IsThanksgivingWeek', 'IsChristmasWeek', 'IsMajorHolidayDerived', 'IsHolidayMonth', 'IsBackToSchool', 'Type_A', 'Type_B', 'Type_C', 'Type_Encoded']
+
+სქორი კი ეს არის: WMAE: 2117.76, MAE: 2025.81, RMSE: 4381.23, R²: 0.8364
+
+ანუ უკეთესია ვიდრე მხოლოდ date-ებზე რო ეყრდნობა ეგეთი nbeats.
