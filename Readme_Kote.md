@@ -1521,4 +1521,3 @@ WMAE: 4311.47, MAE: 4228.89, RMSE: 9884.75, R²: 0.8218
 ხო აქ პრობლემა ის იყო რომ NeuralForecast-ის patchtst არ იღებდა exogenous variable ამიტომ მხოლოდ 2 column-ის გადაცემა შეიძლებოდა.
 
 
-#Experiment Neaural Prophet
