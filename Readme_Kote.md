@@ -1471,3 +1471,53 @@ WMAE: 3767.47, MAE: 3388.35, RMSE: 8433.92, R²: 0.8702
 სქორი კი ეს არის: WMAE: 2117.76, MAE: 2025.81, RMSE: 4381.23, R²: 0.8364
 
 ანუ უკეთესია ვიდრე მხოლოდ date-ებზე რო ეყრდნობა ეგეთი nbeats.
+
+# Experiment PatchTST
+ Patch-based Time Series Transformer
+
+მოკლედ ესეც არის time series მოდელი, იყენებს ტრანსფორმერებს,
+მაგრამ სხვანაირად 
+1. Splits the time series into patches 
+2. Uses 1D patches of historical values to learn patterns more efficiently
+Time series → patches → transformer → forecast
+
+ასევე კარგიაო long term ფორკასტინგისთვის რაც იდეაში ჩვენ გვინდა.
+ასევე ინფითად ჩვეულებრივად სხვადასხვა ფიჩერების მიღება შეუძია
+
+https://wandb.ai/konstantine25b-free-university-of-tbilisi-/walmart-patchtst-forecasting-NO-EXOG-manual-log/runs/sje09f04/overview
+
+config = {
+        'h': 53,
+        'input_size': 52,
+        'max_steps': 5000,
+        'val_size': 53,
+        'batch_size': 256,
+        'learning_rate': 1e-3,
+        'random_seed': 42,
+        'optimizer': 'AdamW',
+        'patch_len': 16,
+        'stride': 8,
+        'revin': True,
+        'n_heads': 16,
+        'encoder_layers': 3,
+        'hidden_size': 128,
+        'linear_hidden_size': 256,
+        'dropout': 0.2,
+        'fc_dropout': 0.2,
+        'head_dropout': 0.0,
+        'attn_dropout': 0.0
+    } 
+აქ განსხვავებული სხვებისგან არის :
+patch_len - რამდენ patch-ად დაიყოფა,
+stride - ეს ნიშნავს იგივე სლაიდინგ ვინდოვს პრინციპით 
+input_size = 52, patch_len = 16, and stride = 8, you get:
+Patches: [(0-15), (8-23), (16-31), ..., (36-51)]
+
+encoder_layers - ტრანსფორმერების რაოდენობა.
+
+აი შედეგი:
+WMAE: 4311.47, MAE: 4228.89, RMSE: 9884.75, R²: 0.8218
+
+ხო აქ პრობლემა ის იყო რომ NeuralForecast-ის patchtst არ იღებდა exogenous variable ამიტომ მხოლოდ 2 column-ის გადაცემა შეიძლებოდა.
+
+
