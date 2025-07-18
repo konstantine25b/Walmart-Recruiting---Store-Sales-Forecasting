@@ -1471,3 +1471,7 @@ WMAE: 3767.47, MAE: 3388.35, RMSE: 8433.92, R²: 0.8702
 სქორი კი ეს არის: WMAE: 2117.76, MAE: 2025.81, RMSE: 4381.23, R²: 0.8364
 
 ანუ უკეთესია ვიდრე მხოლოდ date-ებზე რო ეყრდნობა ეგეთი nbeats.
+
+# Experiment PatchTST
+ Patch-based Time Series Transformer
+კაი
