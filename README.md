@@ -972,11 +972,12 @@ inference tft -ის შედეგი იყო: private - 3554.98537 public 
 inference prophet  -ის შედეგი იყო: provate - 3034.13754 public - 2923.90240
 და ბოლოს როგორც ვთქვი
 
-- Adaptive weighting holiday:  60% Prophet + 40% TFT
-- ჩვეულებრივ დღეებზე: 65% TFT + 35% Prophet
+- Adaptive weighting holiday:  80% Prophet + 20% TFT
+- ჩვეულებრივ დღეებზე: 55% TFT + 45% Prophet
 ამისთვის ავდექი და ეს ფრედიქშენები ზუსტად ესე სევკარი csv ფაილში
-private - 2868.6075
-public - 2767.12775
+private - 2780.48818
+public - 2678.12363
+
 რაც საკმაოდ კარგი score არის.
 
 
