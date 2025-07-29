@@ -967,8 +967,8 @@ Validation WMAE: 1564.401
 
 - TFT: საუკეთესო იყო ($1,421) თან ტრანსფორმერტებს იყტენებს და ასევე attention მექანიზმი აქ
 - Prophet: კარგი იყო ჰოლიდეიებში. თან სტატისტიკურია და ჰოლიდეიებში კარგად შეუძლია დაპროგნოზირება
-- Adaptive weighting holiday:  60% Prophet + 40% TFT
-- ჩვეულებრივ დღეებზე: 65% TFT + 35% Prophet
+- Adaptive weighting holiday:  80% Prophet + 20% TFT
+- ჩვეულებრივ დღეებზე: 55% TFT + 45% Prophet
 
 ვნახოთ რა შედეგს დადებს. 
 
