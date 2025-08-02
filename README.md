@@ -727,11 +727,11 @@ Total possible combinations: 3,248 (45 stores × ~72 departments average)
 https://dagshub.com/konstantine25b/Walmart-Recruiting---Store-Sales-Forecasting.mlflow/#/experiments/52
 
 📊 Training Metrics:
-   Training WMAE: $3,556.27
+   Training WMAE: $4,956.27
 
 📊 Validation Metrics:
-   WMAE (Competition Metric): $4,011.67
-   MAE: $3,776.46
+   WMAE (Competition Metric): $5,611.67
+   MAE: $5,776.46
    RMSE: $4,574.46
    R²: 0.7273
 
