@@ -757,11 +757,11 @@ s: length of the seasonal cycle (e.g., 12 for monthly, 7 for weekly)
 SARIMA(1,1,1)x(0,1,0,52)
 
 📊 Training Metrics:
-   Training WMAE: $1,586.54
+   Training WMAE: $2,686.54
 
 📊 Validation Metrics:
-   WMAE (Competition Metric): $2,219.86
-   MAE: $2,173.68
+   WMAE (Competition Metric): $3,219.86
+   MAE: $3,173.68
    RMSE: $5,867.32
    R²: 0.6853
 
